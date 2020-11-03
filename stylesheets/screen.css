@@ -54,8 +54,20 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
-img {
-  display: block;
-  margin: 30px auto;
+header {
+  margin-top: 30px;
 }
+
+header a, footer ul {
+   display: block;
+   margin: 0 auto;
+   text-align: center;
+}
+footer ul {
+   width: 140px;
+}
+footer ul li {
+   float: left;
+   margin: 5px;
+}
+
