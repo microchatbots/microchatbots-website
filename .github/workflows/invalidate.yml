@@ -1,18 +1,20 @@
-name: Build Website
+name: Invalidate
 on:
-  push:
-    branches: master
+  workflow_dispatch:
+    inputs:
+      path:
+        description: 'index.html'
+        required: true
 jobs:
-  build:
+  invalidate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Copy files to bucket with the AWS CLI
+      - name: Invalidate    
         run: |
-          aws s3 sync site s3://microchatbots.com
+          aws cloudfront create-invalidation --distribution-id EKYBV04C5DG5T --paths "${{ github.event.inputs.path }}"
