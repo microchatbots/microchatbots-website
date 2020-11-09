@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       path:
-        description: 'index.html'
+        description: '/index.html'
         required: true
 jobs:
   invalidate:
